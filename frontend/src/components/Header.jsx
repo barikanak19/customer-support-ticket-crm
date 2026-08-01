@@ -1,0 +1,14 @@
+// components/Header.jsx
+// Simple page header shown at the top of every page
+
+import React from "react";
+
+const Header = () => {
+  return (
+    <header className="header">
+      <h1>Customer Support CRM</h1>
+    </header>
+  );
+};
+
+export default Header;

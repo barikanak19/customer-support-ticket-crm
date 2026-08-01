@@ -87,11 +87,11 @@ Example:
 ```env
 PORT=3000
 
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=YOUR_PASSWORD
-DB_NAME=customer_support_crm
-DB_PORT=3306
+DB_HOST=N/A
+DB_USER=N/A
+DB_PASSWORD=N/A
+DB_NAME=N/A
+DB_PORT=N/A
 ```
 
 Start Backend
@@ -133,17 +133,14 @@ cd frontend
 npm install
 npm run dev
 ```
-
 Frontend will start on
-
 ```
-http://localhost:3000
-```
+(https://customer-support-ticket-crm.vercel.app/)```
 
 Backend
 
 ```
-http://localhost:3000
+https://customer-support-ticket-crm.onrender.com/
 ```
 
 ---

@@ -1,6 +1,3 @@
-// pages/AllTickets.jsx
-// Displays all tickets in a table with search box, status filter and create button
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllTickets } from "../services/api";
@@ -13,14 +10,12 @@ const AllTickets = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // Fetch tickets whenever search or status filter changes
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
       fetchTickets();
-    }, 300); // small debounce so we don't call API on every keystroke
+    }, 300);
 
     return () => clearTimeout(delayDebounce);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status]);
 
   const fetchTickets = async () => {

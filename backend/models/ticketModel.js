@@ -1,9 +1,5 @@
-// models/ticketModel.js
-// Contains all direct database queries related to tickets
-
 const { pool } = require("../config/db");
 
-// Create a new ticket in the database
 const createTicket = async ({ customer_name, customer_email, subject, description }) => {
   const [result] = await pool.query(
     `INSERT INTO tickets (ticket_id, customer_name, customer_email, subject, description, status)
@@ -11,7 +7,6 @@ const createTicket = async ({ customer_name, customer_email, subject, descriptio
     ["TEMP", customer_name, customer_email, subject, description]
   );
 
-  // Generate a readable display ID using the auto-increment id, e.g. TKT-0001
   const insertedId = result.insertId;
   const ticketId = `TKT-${String(insertedId).padStart(4, "0")}`;
 
@@ -20,7 +15,6 @@ const createTicket = async ({ customer_name, customer_email, subject, descriptio
   return { id: insertedId, ticket_id: ticketId };
 };
 
-// Get all tickets, with optional search keyword and status filter
 const getAllTickets = async ({ search, status }) => {
   let query = "SELECT * FROM tickets WHERE 1=1";
   const params = [];
@@ -48,13 +42,11 @@ const getAllTickets = async ({ search, status }) => {
   return rows;
 };
 
-// Get a single ticket by its display ticket_id (e.g. TKT-0001)
 const getTicketByTicketId = async (ticketId) => {
   const [rows] = await pool.query("SELECT * FROM tickets WHERE ticket_id = ?", [ticketId]);
   return rows[0];
 };
 
-// Update ticket status by display ticket_id
 const updateTicketStatus = async (ticketId, status) => {
   const [result] = await pool.query(
     "UPDATE tickets SET status = ? WHERE ticket_id = ?",

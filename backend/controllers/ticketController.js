@@ -1,18 +1,12 @@
-// controllers/ticketController.js
-// Handles the request/response logic for ticket-related routes
-
 const ticketModel = require("../models/ticketModel");
 const noteModel = require("../models/noteModel");
 
 const VALID_STATUSES = ["Open", "In Progress", "Closed"];
 
-// @desc   Create a new ticket
-// @route  POST /api/tickets
 const createTicket = async (req, res) => {
   try {
     const { customer_name, customer_email, subject, description } = req.body;
 
-    // Basic validation
     if (!customer_name || !customer_email || !subject || !description) {
       return res.status(400).json({
         success: false,
@@ -38,8 +32,6 @@ const createTicket = async (req, res) => {
   }
 };
 
-// @desc   Get all tickets (supports search and status filter)
-// @route  GET /api/tickets?search=&status=
 const getAllTickets = async (req, res) => {
   try {
     const { search, status } = req.query;
@@ -57,8 +49,6 @@ const getAllTickets = async (req, res) => {
   }
 };
 
-// @desc   Get single ticket details along with its notes
-// @route  GET /api/tickets/:ticketId
 const getTicketById = async (req, res) => {
   try {
     const { ticketId } = req.params;
@@ -81,8 +71,6 @@ const getTicketById = async (req, res) => {
   }
 };
 
-// @desc   Update ticket status and/or add a note
-// @route  PUT /api/tickets/:ticketId
 const updateTicket = async (req, res) => {
   try {
     const { ticketId } = req.params;
@@ -94,7 +82,6 @@ const updateTicket = async (req, res) => {
       return res.status(404).json({ success: false, message: "Ticket not found." });
     }
 
-    // Update status if provided
     if (status) {
       if (!VALID_STATUSES.includes(status)) {
         return res.status(400).json({
@@ -105,12 +92,10 @@ const updateTicket = async (req, res) => {
       await ticketModel.updateTicketStatus(ticketId, status);
     }
 
-    // Add a note if provided
     if (note_text && note_text.trim() !== "") {
       await noteModel.addNote(ticket.id, note_text.trim());
     }
 
-    // Return the updated ticket with notes
     const updatedTicket = await ticketModel.getTicketByTicketId(ticketId);
     const notes = await noteModel.getNotesByTicketInternalId(updatedTicket.id);
 

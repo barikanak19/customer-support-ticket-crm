@@ -1,6 +1,3 @@
-// pages/TicketDetails.jsx
-// Shows full details of a single ticket, allows status update and adding notes
-
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getTicketById, updateTicket } from "../services/api";
@@ -19,7 +16,6 @@ const TicketDetails = () => {
 
   useEffect(() => {
     fetchTicket();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ticketId]);
 
   const fetchTicket = async () => {

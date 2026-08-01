@@ -1,7 +1,3 @@
-// middleware/errorHandler.js
-// Centralized error handling middleware and 404 handler
-
-// Handles requests to routes that do not exist
 const notFound = (req, res, next) => {
   res.status(404).json({
     success: false,
@@ -9,7 +5,6 @@ const notFound = (req, res, next) => {
   });
 };
 
-// Generic error handler - catches any error passed via next(error)
 const errorHandler = (err, req, res, next) => {
   console.error("Unhandled Error:", err.message);
 

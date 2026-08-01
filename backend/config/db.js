@@ -1,10 +1,6 @@
-// config/db.js
-// Sets up and exports a MySQL connection pool using mysql2
-
 const mysql = require("mysql2/promise");
 require("dotenv").config();
 
-// Create a connection pool (recommended over single connection)
 const pool = mysql.createPool({
   host: process.env.DB_HOST || "localhost",
   port: process.env.DB_PORT || 3306,
@@ -16,7 +12,6 @@ const pool = mysql.createPool({
   queueLimit: 0,
 });
 
-// Simple helper to test the DB connection on server start
 const testConnection = async () => {
   try {
     const connection = await pool.getConnection();

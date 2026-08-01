@@ -1,6 +1,3 @@
-// components/Header.jsx
-// Simple page header shown at the top of every page
-
 import React from "react";
 
 const Header = () => {

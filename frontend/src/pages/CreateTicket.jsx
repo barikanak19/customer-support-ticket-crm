@@ -1,6 +1,3 @@
-// pages/CreateTicket.jsx
-// Simple form to create a new support ticket
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createTicket } from "../services/api";
@@ -27,7 +24,6 @@ const CreateTicket = () => {
     e.preventDefault();
     setError("");
 
-    // Basic client-side validation
     if (!formData.customer_name || !formData.customer_email || !formData.subject || !formData.description) {
       setError("All fields are required.");
       return;
@@ -36,7 +32,6 @@ const CreateTicket = () => {
     try {
       setSubmitting(true);
       await createTicket(formData);
-      // Redirect to ticket list after successful creation
       navigate("/tickets");
     } catch (err) {
       console.error(err);

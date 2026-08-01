@@ -1,6 +1,3 @@
-// components/Navbar.jsx
-// Simple navigation bar with links to All Tickets and Create Ticket
-
 import React from "react";
 import { NavLink } from "react-router-dom";
 

@@ -1,6 +1,3 @@
-// App.jsx
-// Root component - sets up header, navbar and page routes
-
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 

@@ -1,6 +1,3 @@
-// pages/Home.jsx
-// Simple landing page with links to main sections
-
 import React from "react";
 import { Link } from "react-router-dom";
 
